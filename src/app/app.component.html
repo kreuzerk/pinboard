@@ -3,7 +3,7 @@
 </header>
 
 <div class="container mx-auto h-96 mt-28">
-  <pinboard>
-    <ping></ping>
+  <pinboard #dragZone>
+    <pin dragable [dragzone]="pinboard"></pin>
   </pinboard>
 </div>

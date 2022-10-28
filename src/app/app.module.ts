@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {PinboardComponent} from "./pinboard.component";
-import {PingComponent} from "./ping.component";
+import {PinComponent} from "./pin.component";
+import {Dragable} from "./dragable.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     PinboardComponent,
-    PingComponent
+    PinComponent,
+    Dragable
   ],
   imports: [
     BrowserModule

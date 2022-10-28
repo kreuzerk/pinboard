@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {PinboardComponent} from "./pinboard.component";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pinboard';
+
+  @ViewChild(PinboardComponent, {read: ElementRef, static: true}) pinboard: ElementRef | undefined;
 }
