@@ -48,7 +48,14 @@ export class Dragable implements OnInit {
     const mouseUp$ = fromEvent(this.dragzone.nativeElement, 'mouseup').pipe(
       map(() => false)
     );
-    const mouseMove$ = fromEvent(this.dragzone.nativeElement, 'mousemove');
+    const mouseMove$ = fromEvent(this.host.nativeElement, 'mousemove').pipe(
+      filter((event: any) => {
+        const boundingRects = this.dragzone.nativeElement.getBoundingClientRect();
+        return event.clientX > boundingRects.left
+          && event.clientX < boundingRects.right
+          && event.clientY > boundingRects.top
+          && event.clientY < boundingRects.bottom;
+      }));
 
 
     merge(mouseDown$, mouseUp$).pipe(
