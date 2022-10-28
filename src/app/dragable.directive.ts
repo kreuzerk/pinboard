@@ -48,7 +48,7 @@ export class Dragable implements OnInit {
     const mouseUp$ = fromEvent(this.dragzone.nativeElement, 'mouseup').pipe(
       map(() => false)
     );
-    const mouseMove$ = fromEvent(this.host.nativeElement, 'mousemove').pipe(
+    const mouseMove$ = fromEvent(this.dragzone.nativeElement, 'mousemove').pipe(
       filter((event: any) => {
         const boundingRects = this.dragzone.nativeElement.getBoundingClientRect();
         return event.clientX > boundingRects.left
@@ -62,10 +62,12 @@ export class Dragable implements OnInit {
       switchMap((isMouseDown) =>
         mouseMove$.pipe(takeWhile(() => isMouseDown)
         )
-      )).subscribe((event) => this.updateCoordinates(event));
+      ),
+    ).subscribe((event) => this.updateCoordinates(event));
   }
 
   private updateCoordinates(event: any) {
+    console.log('da');
     event.preventDefault();
     this.pos1 = this.pos3 - event.clientX;
     this.pos2 = this.pos4 - event.clientY;
