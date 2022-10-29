@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #474F5B;
+}
+
 .tooltip-container {
   text-align: center;
   z-index: 100;

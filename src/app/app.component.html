@@ -1,9 +1,26 @@
 <header class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-  <h1 class="text-white text-xl">Pinboard</h1>
+  <h1 class="text-white text-4xl">Pinboard</h1>
 </header>
 
-<div class="container mx-auto h-96 mt-28">
+<div class="container mx-auto mt-28" style="height: 700px">
   <pinboard #dragZone>
-    <pin tooltip="I am a tooltip" dragable [dragzone]="pinboard"></pin>
+    <pin rotate="45deg" tooltip="Ship new products" dragable [dragzone]="pinboard"
+         image="rocket"
+    ></pin>
+    <pin rotate="-20deg" tooltip="A good beer after a day of coding" dragable [dragzone]="pinboard"
+         image="beer"
+    ></pin>
+
+    <pin rotate="0deg" tooltip="My favourite Keyboard, the Moonlander" dragable [dragzone]="pinboard"
+         image="keyboard"
+    ></pin>
+
+     <pin rotate="10deg" tooltip="Write tests for better code" dragable [dragzone]="pinboard"
+         image="testing"
+
+    ></pin>
+    <pin rotate="25deg" tooltip="No coffee no code" dragable [dragzone]="pinboard"
+         image="coffee"
+    ></pin>
   </pinboard>
 </div>

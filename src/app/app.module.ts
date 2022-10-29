@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {PinboardComponent} from "./pinboard.component";
 import {TooltipDirective} from "./tooltip.directive";
+import {RotateDirective} from "./rotate.directive";
 import { AppComponent } from './app.component';
 import {Dragable} from "./dragable.directive";
 import {PinComponent} from "./pin.component";
@@ -13,6 +14,7 @@ import {PinComponent} from "./pin.component";
     PinboardComponent,
     PinComponent,
     TooltipDirective,
+    RotateDirective,
     Dragable
   ],
   imports: [

@@ -1,12 +1,39 @@
-import {Component, Input} from "@angular/core";
+import {Component, ElementRef, Host, Input, OnInit, SkipSelf} from "@angular/core";
+
+import {PinboardComponent} from "./pinboard.component";
 
 @Component({
   selector: 'pin',
   template: `
-    <div class="w-10 h-10 rounded-full bg-green-500 {{color}}"></div>
-  `
+    <img [src]="'assets/' + image + '.svg'"/>
+  `,
+  styles: [`
+    img {
+      width: 250px;
+      height: 250px;
+    }
+  `]
 })
-export class PinComponent {
+export class PinComponent implements OnInit {
   @Input() color: string | undefined;
+  @Input() image: string | undefined;
 
+  constructor(@SkipSelf() private pinboard: ElementRef, private host: ElementRef) {
+  }
+
+  ngOnInit(): void {
+    let {left, right, top, bottom} = this.pinboard.nativeElement.getBoundingClientRect();
+    const {height} = this.host.nativeElement.getBoundingClientRect();
+
+    bottom = bottom - height;
+    right = right - height;
+    left = left + height;
+    top = top + height;
+
+    const randomXPosition = Math.floor(Math.random() * (right - left + 1) + left);
+    const randomYPosition = Math.floor(Math.random() * (bottom - top + 1) + top);
+
+    this.host.nativeElement.style.top = `${randomYPosition}px`;
+    this.host.nativeElement.style.left = `${randomXPosition}px`;
+  }
 }
