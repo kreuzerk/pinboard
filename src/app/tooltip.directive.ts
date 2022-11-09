@@ -26,7 +26,6 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mousedown') dragstart() {
-    console.log('Drag start');
     if (this.timer) clearTimeout(this.timer);
     if (this.myPopup) { this.myPopup.remove() }
   }

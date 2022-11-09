@@ -4,23 +4,14 @@
 
 <div class="container mx-auto mt-28" style="height: 700px">
   <pinboard #dragZone>
-    <pin rotate="45deg" tooltip="Ship new products" dragable [dragzone]="pinboard"
-         image="rocket"
-    ></pin>
-    <pin rotate="-20deg" tooltip="A good beer after a day of coding" dragable [dragzone]="pinboard"
-         image="beer"
-    ></pin>
-
-    <pin rotate="0deg" tooltip="My favourite Keyboard, the Moonlander" dragable [dragzone]="pinboard"
-         image="keyboard"
-    ></pin>
-
-     <pin rotate="10deg" tooltip="Write tests for better code" dragable [dragzone]="pinboard"
-         image="testing"
-
-    ></pin>
-    <pin rotate="25deg" tooltip="No coffee no code" dragable [dragzone]="pinboard"
-         image="coffee"
-    ></pin>
+    <pin
+      *ngFor="let pin of pins"
+      dragable
+      [rotate]="pin.rotate"
+      [tooltip]="pin.tooltip"
+      [dragzone]="pinboard"
+      [image]="pin.image"
+    >
+    </pin>
   </pinboard>
 </div>

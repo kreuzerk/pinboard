@@ -1,6 +1,4 @@
-import {Component, ElementRef, Host, Input, OnInit, SkipSelf} from "@angular/core";
-
-import {PinboardComponent} from "./pinboard.component";
+import {Component, ElementRef, Input, OnInit, SkipSelf} from "@angular/core";
 
 @Component({
   selector: 'pin',

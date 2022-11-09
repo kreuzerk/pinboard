@@ -1,20 +1,27 @@
-import {Directive, ElementRef, HostBinding, Input, OnInit} from "@angular/core";
+import {Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnInit, Output} from "@angular/core";
 import {filter, fromEvent, map, merge, switchMap, takeWhile, tap} from "rxjs";
 
 @Directive({
   selector: '[dragable]'
 })
-export class Dragable implements OnInit {
+export class DragableDirective implements OnInit {
 
   @Input() dragzone: any | undefined;
 
   @HostBinding('attr.draggable') draggable = 'true';
   @HostBinding('style.position') position = 'absolute';
+  @Output() pinGrabbed = new EventEmitter();
 
   private pos1 = 0;
   private pos2 = 0;
   private pos3 = 0;
   private pos4 = 0;
+
+  @HostListener('mousedown', ['$event'])
+  onDragStart(event: any) {
+    console.log('Da');
+    this.pinGrabbed.emit(event);
+  }
 
   constructor(private host: ElementRef) {
   }

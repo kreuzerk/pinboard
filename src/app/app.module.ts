@@ -1,21 +1,21 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
 import {PinboardComponent} from "./pinboard.component";
-import {TooltipDirective} from "./tooltip.directive";
-import {RotateDirective} from "./rotate.directive";
-import { AppComponent } from './app.component';
-import {Dragable} from "./dragable.directive";
+import {AppComponent} from './app.component';
 import {PinComponent} from "./pin.component";
+import {RotateDirective} from "./rotate.directive";
+import {TooltipDirective} from "./tooltip.directive";
+import {DragableDirective} from "./dragable.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     PinboardComponent,
     PinComponent,
-    TooltipDirective,
     RotateDirective,
-    Dragable
+    TooltipDirective,
+    DragableDirective
   ],
   imports: [
     BrowserModule
@@ -23,4 +23,5 @@ import {PinComponent} from "./pin.component";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
