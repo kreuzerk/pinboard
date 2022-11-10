@@ -5,12 +5,13 @@ import {filter, fromEvent, map, merge, switchMap, takeWhile, tap} from "rxjs";
   selector: '[dragable]'
 })
 export class DragableDirective implements OnInit {
-
-  @Input() dragzone: any | undefined;
+  @Input() dragZone: any | undefined;
 
   @HostBinding('attr.draggable') draggable = 'true';
   @HostBinding('style.position') position = 'absolute';
-  @Output() pinGrabbed = new EventEmitter();
+
+  @Output() dragStart = new EventEmitter();
+  @Output() dragEnd = new EventEmitter();
 
   private pos1 = 0;
   private pos2 = 0;
@@ -19,32 +20,36 @@ export class DragableDirective implements OnInit {
 
   @HostListener('mousedown', ['$event'])
   onDragStart(event: any) {
-    console.log('Da');
-    this.pinGrabbed.emit(event);
+    this.dragStart.emit(event);
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onDragEnd(event: any) {
+    this.dragEnd.emit(event);
   }
 
   constructor(private host: ElementRef) {
   }
 
   ngOnInit(): void {
-    if (!this.dragzone) {
+    if (!this.dragZone) {
       console.warn('Please provide a dragzone!')
       return;
     }
 
-    const mouseDown$ = fromEvent(this.dragzone.nativeElement, 'mousedown').pipe(
+    const mouseDown$ = fromEvent(this.dragZone.nativeElement, 'mousedown').pipe(
       tap((event: any) => {
         this.pos3 = event.clientX;
         this.pos4 = event.clientY;
       }),
       map(() => true),
     );
-    const mouseUp$ = fromEvent(this.dragzone.nativeElement, 'mouseup').pipe(
+    const mouseUp$ = fromEvent(this.dragZone.nativeElement, 'mouseup').pipe(
       map(() => false)
     );
     const mouseMove$ = fromEvent(this.host.nativeElement, 'mousemove').pipe(
       filter((event: any) => {
-        const boundingRects = this.dragzone.nativeElement.getBoundingClientRect();
+        const boundingRects = this.dragZone.nativeElement.getBoundingClientRect();
         const halfOfElementsWidth = this.host.nativeElement.offsetWidth / 2;
         const halfOfElementsHeight = this.host.nativeElement.offsetHeight / 2;
         return event.clientX - halfOfElementsWidth > boundingRects.left

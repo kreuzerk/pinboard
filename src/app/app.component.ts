@@ -16,9 +16,14 @@ export class AppComponent {
     {rotate: '10deg', tooltip: 'Write tests to improve the quality of your code', image: 'testing'},
     {rotate: '25deg', tooltip: 'No coffee no code', image: 'coffee'},
   ];
+  grabbed = false;
 
 
   pinGrabbed() {
-    console.log('Pin grabbed')
+    this.grabbed = true;
+  }
+
+  pinReleased() {
+    this.grabbed = false;
   }
 }

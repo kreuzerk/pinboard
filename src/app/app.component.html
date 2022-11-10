@@ -9,9 +9,14 @@
       dragable
       [rotate]="pin.rotate"
       [tooltip]="pin.tooltip"
-      [dragzone]="pinboard"
+      [dragZone]="pinboard"
       [image]="pin.image"
+      (dragStart)="pinGrabbed()"
+      (dragEnd)="pinReleased()"
     >
     </pin>
   </pinboard>
+  <span class="info-message">
+    {{ grabbed ? 'Dragging' : 'Drag a pin to update its position' }}
+  </span>
 </div>
