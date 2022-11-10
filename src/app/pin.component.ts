@@ -1,5 +1,7 @@
 import {Component, ElementRef, Input, OnInit, SkipSelf} from "@angular/core";
 
+import {PositionService} from "./position.service";
+
 @Component({
   selector: 'pin',
   template: `
@@ -9,6 +11,7 @@ import {Component, ElementRef, Input, OnInit, SkipSelf} from "@angular/core";
     img {
       width: 250px;
       height: 250px;
+      cursor: grab;
     }
   `]
 })
@@ -16,22 +19,13 @@ export class PinComponent implements OnInit {
   @Input() color: string | undefined;
   @Input() image: string | undefined;
 
-  constructor(@SkipSelf() private pinboard: ElementRef, private host: ElementRef) {
+  constructor(@SkipSelf() private pinboard: ElementRef, private host: ElementRef, private positionService: PositionService) {
   }
 
   ngOnInit(): void {
-    let {left, right, top, bottom} = this.pinboard.nativeElement.getBoundingClientRect();
-    const {height} = this.host.nativeElement.getBoundingClientRect();
-
-    bottom = bottom - height;
-    right = right - height;
-    left = left + height;
-    top = top + height;
-
-    const randomXPosition = Math.floor(Math.random() * (right - left + 1) + left);
-    const randomYPosition = Math.floor(Math.random() * (bottom - top + 1) + top);
-
-    this.host.nativeElement.style.top = `${randomYPosition}px`;
-    this.host.nativeElement.style.left = `${randomXPosition}px`;
+    const boundingRects = this.pinboard.nativeElement.getBoundingClientRect();
+    const {top, left} = this.positionService.getPosition(boundingRects);
+    this.host.nativeElement.style.top = `${top}px`;
+    this.host.nativeElement.style.left = `${left}px`;
   }
 }
