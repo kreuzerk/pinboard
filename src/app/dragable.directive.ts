@@ -33,7 +33,7 @@ export class DragableDirective implements OnInit {
 
   ngOnInit(): void {
     if (!this.dragZone) {
-      console.warn('Please provide a dragzone!')
+      console.warn('dragable directive requires a dragZone attribute');
       return;
     }
 
