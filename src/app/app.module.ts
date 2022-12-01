@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {PinComponent} from "./pin.component";
 import {RotateDirective} from "./rotate.directive";
 import {TooltipDirective} from "./tooltip.directive";
-import {DragableDirective} from "./dragable.directive";
+import {DraggableDirective} from "./draggable.directive";
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import {DragableDirective} from "./dragable.directive";
     PinComponent,
     RotateDirective,
     TooltipDirective,
-    DragableDirective
+    DraggableDirective
   ],
   imports: [
     BrowserModule

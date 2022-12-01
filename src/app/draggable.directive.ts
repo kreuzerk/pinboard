@@ -2,9 +2,9 @@ import {Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, O
 import {filter, fromEvent, map, merge, switchMap, takeWhile, tap} from "rxjs";
 
 @Directive({
-  selector: '[dragable]'
+  selector: '[draggable]'
 })
-export class DragableDirective implements OnInit {
+export class DraggableDirective implements OnInit {
   @Input() dragZone: any | undefined;
 
   @HostBinding('attr.draggable') draggable = 'true';
